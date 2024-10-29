@@ -1,0 +1,39 @@
+<%- include('../header', {title: 'Admin Page'}) %>
+<header>
+  <%- include('../navbar', {title}) %>
+</header>
+<div class="container mt-5 pt-5">
+    <div class="card mb-4 shadow-lg bg-light">
+        <h2 class="text-center p-2">User Management</h2>
+        <div class="p-2 p-md-5 row">
+            <div class="input-group col-sm">
+                <input type="text" class="form-control border-secondary" id="search" name="search" placeholder="Search by email ..." onkeyup="searchTable()">
+                <span class="input-group-text bg-info border-secondary" id="search-button" style="cursor: pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20px" ><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+                </span>
+            </div>
+            <button type="button" class="btn btn-success col-3 align-middle" onclick="addUserButton()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width="20px" fill="#fff"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3zM504 312l0-64-64 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l64 0 0-64c0-13.3 10.7-24 24-24s24 10.7 24 24l0 64 64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0 0 64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+                <span>Add User</span>
+            </button>
+        </div>
+        
+
+        <div class="p-2 p-md-5">
+            <table class="table table-stripped table-bordered border-black" id="table">
+                <thead class="text-center">
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody class="text-center">
+                <% users.map((user, index) => { %>
+                    <%-  include('tableData', {index: index + 1, name: user.firstname + " " + user.lastname, email: user.email})%>
+                <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<%- include('../footer') %>
